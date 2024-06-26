@@ -91,7 +91,7 @@
     });
 
 
-    // Skills
+    // Skills & Study
     $('.skill').waypoint(function () {
         $('.progress .progress-bar').each(function () {
             $(this).css("width", $(this).attr("aria-valuenow") + '%');
@@ -99,20 +99,30 @@
     }, {offset: '80%'});
 
 
-    // Portfolio isotope and filter
-    var portfolioIsotope = $('.portfolio-container').isotope({
+// Hard-Skills isotope and filter
+$(document).ready(function() {
+    var $portfolioIsotope = $('.portfolio-container').isotope({
         itemSelector: '.portfolio-item',
         layoutMode: 'fitRows'
     });
+
+    // Set initial filter to show only the '.best' items
+    $portfolioIsotope.isotope({ filter: '.best' });
+
+    // Add 'active' class to the first filter item
+    $('#portfolio-flters li[data-filter=".best"]').addClass('active');
+
+    // Filter items on click
     $('#portfolio-flters li').on('click', function () {
         $("#portfolio-flters li").removeClass('active');
         $(this).addClass('active');
 
-        portfolioIsotope.isotope({filter: $(this).data('filter')});
+        $portfolioIsotope.isotope({ filter: $(this).data('filter') });
     });
+});
 
 
-    // Testimonials carousel
+    // Certificat carousel
     $(".testimonial-carousel").owlCarousel({
         autoplay: true,
         smartSpeed: 1000,
